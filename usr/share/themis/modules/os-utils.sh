@@ -5,11 +5,11 @@ checkroot() {
    red='\033[0;31m'
    green='\033[0;32m'
     if [[ ${EUID} != 0 ]] ; then
-            echo -e "${red}pls try with 'sudo ${0}'${reset}"
+            echo -e "${red}pls try with root privalages 'sudo ${0}'${reset}"
             checkroot="false"
             [[ ${1} =~ ^(exit|EXIT|--exit|--EXIT|-e)$ ]] && exit 1
         else
-            echo -e "${green}set user have super powers....${reset}"
+            echo -e "${green}set user have super cow powers....${reset}"
             checkroot="true"
     fi
 }

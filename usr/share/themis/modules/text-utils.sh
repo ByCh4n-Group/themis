@@ -78,3 +78,7 @@ error() {
     echo -e "${Bred}Error Occured Cause${reset}: ${1}"
     [[ ${2} =~ ^(e|E) ]] && exit 1
 }
+
+success() {
+    echo -e "${Bgreen}Success${reset}: ${1}"
+}

@@ -67,6 +67,7 @@ case ${1} in
         if [ ${#} -gt 1 ] ; then
             for i in $(seq 2 ${#}) ; do
                 if [ -d ${@:i:1} ] ; then
+                    cd ${setdir}
                     makepackage "${@:i:1}"
                 else
                     echo "'${@:i:1}' is not a directory please specify a directory."
