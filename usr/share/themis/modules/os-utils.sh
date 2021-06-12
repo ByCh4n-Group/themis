@@ -15,8 +15,18 @@ checkroot() {
 }
 
 definebase() {
-    if [ -e ] ; then
-
+    if [ -e /etc/debian_version ] ; then
+        set_systembase="debian"
+    elif [ -e /etc/arch-release ] ; then
+        set_systembase="arch"
+    elif [ -e /etc/artix-release ] ; then
+        set_systembase="arch"
+    elif [ -e /etc/fedora-release ] ; then
+        set_systembase="fedora"
+    elif [ -e /etc/pisi-release ] ; then
+        set_systembase="pisi"
+    elif [ -e /etc/zypp/zypper.conf ] ; then
+        set_systembase="opensuse"
     else
         set_systembase="unknow"
     fi
@@ -27,17 +37,34 @@ updatecatalogs() {
         checkroot -e
         definebase
         case ${set_systembase} in
-
+            debian)
+                apt update
+            ;;
+            arch)
+                pacman -Syyy
+            ;;
+            fedora)
+                :
+            ;;
+            pisi)
+                pisi ur
+            ;;
+            opensuse)
+                zypper refresh
+            ;;
         esac
     }
     if [ -e /usr/share/themis/lastupdate.conf ] ; then
         source /usr/share/themis/lastupdate.conf
-        if [[  ]] ; then
-
+        if [[ $(date +%Y%m%d) -gt $(( ${lastupdate} + 7 )) ]] ; then
+            up
+            echo "lastupdate='$(date +%Y%m%d)'" > source /usr/share/themis/lastupdate.conf
+        else
+            echo "Catalogs Are Up To Date."
         fi 
     else
         up
-        
+        echo "lastupdate='$(date +%Y%m%d)'" > source /usr/share/themis/lastupdate.conf
     fi
 }
 
@@ -46,7 +73,21 @@ installpkg() {
     checkroot -e
     definebase
     case ${set_systembase} in
-
+        debian)
+            apt install -y "${1}"
+        ;;
+        arch)
+            pacman -Sy --noconfirm "${1}"
+        ;;
+        fedora)
+            :
+        ;;
+        pisi)
+            :
+        ;;
+        opensuse)
+            zypper install --no-confirm "${1}"
+        ;;
     esac
 
 }

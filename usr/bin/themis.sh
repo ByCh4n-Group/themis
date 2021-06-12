@@ -16,11 +16,14 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-## Configuration
+# Göğsünde atınca senin mi sandın?
 
 # major(1).minor(0).patch(0)
 version="1"
 maintainer="lazypwny"
+
+## Configuration
+
 
 setdir="$PWD"
 user="${SUDO_USER:-$USER}"
