@@ -247,7 +247,7 @@ uninstallpackage() {
         move() {    
             if [[ ! -z ${1} ]] && [[ ! -z ${2} ]] ; then
                 file="$(basename ${1})"
-                [ -e ${2}/${file} ] && { rm ${2}/${file} ; success "${2}/${file} -> /dev/null" ; } || warn "${file}: that file is already removed"
+                [ -e ${2}/${file} ] && { rm -rf ${2}/${file} ; success "${2}/${file} -> /dev/null" ; } || warn "${file}: that file is already removed"
             else
                 error "file or director(y/ies) not specified"
                 removestatus="bad"
