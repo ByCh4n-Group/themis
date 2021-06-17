@@ -13,7 +13,7 @@ makepackage() {
             success "set package variable is ${green}${package}${reset}"
             if [[ $(grep "build() {" "${1}/CONTROL") ]] ; then
                 success "build: function found."
-                [ -z ${version} ] && version="1.0.0"
+                [[ -z ${version} ]] && version="1.0.0"
                 [[ -z ${maintainer} ]] && maintainer="anyone"
                 [[ -z ${description} ]] && description="rtfm"
                 [ ! -z ${arch_depends} ] && echo -e "${Bgreen}Arch Linux${reset} dependences found."

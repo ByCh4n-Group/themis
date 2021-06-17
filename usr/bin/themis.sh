@@ -62,25 +62,25 @@ check-all
 # main
 
 case ${1} in
-    [hH][eE][lL][pP]|--[hH][eE][lL][pP]|-[hH])
+    [hH][eE][lL][pP]|--[hH][eE][lL][pP]|[yY][aA][rR][dD][iIıİ][mM]|--[yY][aA][rR][dD][iIıİ][mM]|-[hH])
         echo -e "$(basename ${0}) V${version} by ByCh4n-Group, ${maintainer}\n${Bgreen}There are nine (${Bwhite}9${Bgreen}) flags${reset}:  ${Bwhite}--help${reset}, ${Bwhite}--makepackage, ${Bwhite}--localinstall${reset}, ${Bwhite}--install${reset}, ${Bwhite}--uninstall${reset}, ${Bwhite}--updateindex${reset}, ${Bwhite}--list${reset}, ${Bwhite}--info${reset}, ${Bwhite}--version${reset}
-${Bblue}--help${reset},${Bblue} help${reset},${Bblue} -h${reset}: The help argument shows this menu
-${Bblue}--makepackage${reset},${Bblue} makepackage${reset},${Bblue} -mp${reset}: The makepackage argument Examines the script prepared according to themis 
+${Bblue}--help${reset},${Bblue} help${reset},${Bblue} --yardım${reset},${Bblue} yardım${reset},${Bblue} -h${reset}: The help argument shows this menu
+${Bblue}--makepackage${reset},${Bblue} makepackage${reset},${Bblue} --paketyap${reset}, ${Bblue}paketyap${reset},${Bblue} -mp${reset}: The makepackage argument Examines the script prepared according to themis 
 procedure and compresses the package if it is made according to the procedure you can make multiple packages.
-${Bblue}--localinstall${reset},${Bblue} localinstall${reset},${Bblue} -li${reset}: The localinstall argument installs themis packages 
+${Bblue}--localinstall${reset},${Bblue} localinstall${reset},${Bblue} --lokalyükle${reset}, ${Bblue}lokalyükle${reset},${Bblue} -li${reset}: The localinstall argument installs themis packages 
 with the .tar.gz extension you specify from your file system. You can install more than one package.
-${Bblue}--install${reset},${Bblue} install${reset},${Bblue} -i${reset}: To use the updateindex argument, you must first run the updateindex argument
+${Bblue}--install${reset},${Bblue} install${reset}, ${Bblue} --yükle${reset},${Bblue} yükle${reset},${Bblue} -i${reset}: To use the updateindex argument, you must first run the updateindex argument
 and update the repository settings, then specify the package or packages you want to download as a parameter, if the package or packages you are looking for
 are available in the repository, it will download and install it.
-${Bblue}--uninstall${reset},${Bblue} uninstall${reset},${Bblue} -u${reset}: You can delete an installed package or packages with the uninstall argument.
-${Bblue}--updateindex${reset},${Bblue} updateindex${reset},${Bblue} -up${reset}: The update index argument updates the settings of the repositories (updates the catalogs)
+${Bblue}--uninstall${reset},${Bblue} uninstall${reset}, ${Bblue}--kaldır${reset}, ${Bblue}kaldır${reset},${Bblue} -u${reset}: You can delete an installed package or packages with the uninstall argument.
+${Bblue}--updateindex${reset},${Bblue} updateindex${reset}, ${Bblue}--indeksgüncelle${reset}, ${Bblue}indexgüncelle${reset},${Bblue} -up${reset}: The update index argument updates the settings of the repositories (updates the catalogs)
 In version V1.0.0, there is no system to replace old packages with new packages, but it is recommended to use this argument periodically when this system is added in the future.
-${Bblue}--list${reset},${Bblue} list${reset},${Bblue} -l${reset}: The list argument shows the installed packages, and if '--repositories, repositories, repo' is used as the second argument,
+${Bblue}--list${reset},${Bblue} list${reset},${Bblue} -l${reset}: The list argument shows the installed packages, and if '--repositories, repositories, depo, repo' is used as the second argument,
 it shows the package information in the catalogs of the existing repositories, that is, packages that can be installed from the internet.
-${Bblue}--info${reset},${Bblue} info${reset},${Bblue} -i${reset}: The info argument provides detailed information about the package or packages.
+${Bblue}--info${reset},${Bblue} info${reset},${Bblue} --bilgi${reset},${Bblue} bilgi${reset},${Bblue} -i${reset}: The info argument provides detailed information about the package or packages.
 ${Bblue}--version${reset},${Bblue} version${reset},${Bblue} -v${reset}: The version argument shows the version and the builder of this project."
     ;;
-    [mM][aA][kK][eE][pP][aA][cC][kK][aA][gG][eE]|--[mM][aA][kK][eE][pP][aA][cC][kK][aA][gG][eE]|-[mM][pP])
+    [mM][aA][kK][eE][pP][aA][cC][kK][aA][gG][eE]|--[mM][aA][kK][eE][pP][aA][cC][kK][aA][gG][eE]|[pP][aA][kK][eE][tT][yY][aA][pP]|--[pP][aA][kK][eE][tT][yY][aA][pP]|-[mM][pP])
         checkdepedns "tar"
         status="nice"
         if [ ${#} -gt 1 ] ; then
@@ -99,7 +99,7 @@ ${Bblue}--version${reset},${Bblue} version${reset},${Bblue} -v${reset}: The vers
         [[ ${status} = "bad" ]] && { echo -e "${red}Some Package(s) Are Can Not Be Compiled!${reset}" ; exit 2 ; } || { [[ ${status} = "nice" ]]  && exit 0 || error "¿Unknow Error?" "e"; }
         exit 0
     ;;
-    [lL][oO][cC][aA][lL][iI][nN][sS][tT][aA][lL][lL]|--[lL][oO][cC][aA][lL][iI][nN][sS][tT][aA][lL][lL]|-[lL][iI])
+    [lL][oO][cC][aA][lL][iI][nN][sS][tT][aA][lL][lL]|--[lL][oO][cC][aA][lL][iI][nN][sS][tT][aA][lL][lL]|[lL][oO][kK][aA][lL][yY][üÜuU][kK][lL][eE]|--[lL][oO][kK][aA][lL][yY][üÜuU][kK][lL][eE]|-[lL][iI])
         [ -d ${pkgmd} ] || error "Packages Of MetaData Directory Not Found Please Check: ${pkgmd}" "e"
         checkdepedns "tar" "wget" "curl" "pip3" "gem"
         status="nice"
@@ -122,7 +122,7 @@ ${Bblue}--version${reset},${Bblue} version${reset},${Bblue} -v${reset}: The vers
         [[ ${status} = "bad" ]] && { echo -e "${red}Some Package(s) Are Can Not Be Installed!${reset}" ; exit 2 ; } || { [[ ${status} = "nice" ]]  && exit 0 || error "¿Unknow Error?" "e"; }
         exit 0
     ;;
-    [iI][nN][sS][tT][aA][lL][lL]|--[iI][nN][sS][tT][aA][lL][lL]|-[iI])
+    [iI][nN][sS][tT][aA][lL][lL]|--[iI][nN][sS][tT][aA][lL][lL]|[yY][üÜuU][kK][lL][eE]|--[yY][üÜuU][kK][lL][eE]|-[iI])
         [ -d ${repodir} ] || error "repositories configuration directory doesn't exist please check it: ${repodir}" "e"
         [ -d ${pkgmd} ] || error "Packages Of MetaData Directory Not Found Please Check: ${pkgmd}" "e"
         checkdepedns "tar" "wget"
@@ -161,7 +161,7 @@ ${Bblue}--version${reset},${Bblue} version${reset},${Bblue} -v${reset}: The vers
         [[ ${status} = "bad" ]] && { echo -e "${red}Some Package(s) Are Can Not Be Installed!${reset}" ; exit 2 ; } || { [[ ${status} = "nice" ]]  && exit 0 || error "¿Unknow Error?" "e"; }
         exit 0
     ;;
-    [uU][nN][iI][nN][sS][tT][aA][lL][lL]|--[uU][nN][iI][nN][sS][tT][aA][lL][lL]|-[uU])
+    [uU][nN][iI][nN][sS][tT][aA][lL][lL]|--[uU][nN][iI][nN][sS][tT][aA][lL][lL]|[kK][aA][lL][dD][ıIiİ][rR]|--[kK][aA][lL][dD][ıIiİ][rR]|-[uU])
         [ -d ${pkgmd} ] || error "Packages Of MetaData Directory Not Found Please Check: ${pkgmd}" "e"
         status="nice"
         checkroot -e
@@ -181,7 +181,7 @@ ${Bblue}--version${reset},${Bblue} version${reset},${Bblue} -v${reset}: The vers
         [[ ${status} = "bad" ]] && { echo -e "${red}Some Package(s) Are Can Not Be Removed!${reset}" ; exit 2 ; } || { [[ ${status} = "nice" ]]  && exit 0 || error "¿Unknow Error?" "e"; }
         exit 0
     ;;
-    [uU][pP][dD][aA][tT][eE][iI][nN][dD][eE][xX]|--[uU][pP][dD][aA][tT][eE][iI][nN][dD][eE][xX]|-[uU][pP])
+    [uU][pP][dD][aA][tT][eE][iI][nN][dD][eE][xX]|--[uU][pP][dD][aA][tT][eE][iI][nN][dD][eE][xX]|[ıIiİ][nN][dD][eE][kK][sS][gG][üÜuU][nN][cC][eE][lL][lL][eE]|--[ıIiİ][nN][dD][eE][kK][sS][gG][üÜuU][nN][cC][eE][lL][lL][eE]|-[uU][pP])
         [ -d ${repodir} ] || error "repositories configuration directory doesn't exist please check it: ${repodir}" "e"
         checkdepedns "wget" "ping" "sha256sum"
         [[ -e "${sethome}/index.sh" ]] && source "${sethome}/index.sh" || error "repositories configuration file not found please check it: ${sethome}/index.sh" "e"
@@ -199,7 +199,7 @@ ${Bblue}--version${reset},${Bblue} version${reset},${Bblue} -v${reset}: The vers
     ;;
     [lL][iI][sS][tT]|--[lL][iI][sS][tT]|-[lL])
         case ${2} in
-            [rR][eE][pP][oO][sS][iI][tT][oO][rR][iI][eE][sS]|--[rR][eE][pP][oO][sS][iI][tT][oO][rR][iI][eE][sS]|[rR][eE][pP][oO])
+            [rR][eE][pP][oO][sS][iI][tT][oO][rR][iI][eE][sS]|--[rR][eE][pP][oO][sS][iI][tT][oO][rR][iI][eE][sS]|[dD][eE][pP][oO]|[rR][eE][pP][oO])
                 [ -d ${repodir} ] || error "Repositories MetaData Directory Not Found Please Check it: ${repodir}" "e"
                 status="nice"
                 echo -e "${Bpurple}"
@@ -247,7 +247,7 @@ ${Bblue}--version${reset},${Bblue} version${reset},${Bblue} -v${reset}: The vers
         randomexitmessage
         exit 0
     ;;
-    [iI][nN][fF][oO]|--[iI][nN][fF][oO]|-[iI])
+    [iI][nN][fF][oO]|--[iI][nN][fF][oO]|[bB][iİıI][lL][gG][iİıI]|--[bB][iİıI][lL][gG][iİıI]|-[iI])
         [ -d ${pkgmd} ] || error "Packages Of MetaData Directory Not Found Please Check: ${pkgmd}" "e"
         status="nice"
         if [[ ${#} -gt 1 ]] ; then
