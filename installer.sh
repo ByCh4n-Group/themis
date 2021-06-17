@@ -9,6 +9,8 @@ case ${1} in
     [iI][nN][sS][tT][aA][lL][lL]|--[iI][nN][sS][tT][aA][lL][lL]|-[iI])
         [ -e ./usr/bin/themis.sh ] && cp ./usr/bin/themis.sh /usr/bin/themis
         [ -d ./usr/share/themis ] && cp -r ./usr/share/themis /usr/share
+        [ -d /usr/share/themis/packages ] || mkdir -p /usr/share/themis/packages
+        [ -d /usr/share/themis/repositories ] || mkdir -p /usr/share/themis/repositories 
         chown -R ${user}:${group} /usr/share/themis/*/*
         echo "installation completed."
     ;;
@@ -22,6 +24,8 @@ case ${1} in
         [ -d /usr/share/themis ] && rm -rf /usr/share/themis
         [ -e ./usr/bin/themis.sh ] && cp ./usr/bin/themis.sh /usr/bin/themis
         [ -d ./usr/share/themis ] && cp -r ./usr/share/themis /usr/share
+        [ -d /usr/share/themis/packages ] || mkdir -p /usr/share/themis/packages
+        [ -d /usr/share/themis/repositories ] || mkdir -p /usr/share/themis/repositories
         chown -R ${user}:${group} /usr/share/themis/*/*
         echo "reinstallation completed."
     ;;
