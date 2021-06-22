@@ -18,6 +18,9 @@ netcheck() {
         print|PRINT|-p)
             echo "${netcheck}"
         ;;
+        [eE][xX][iI][tT]|[eE]|-[eE])
+            [[ ${netcheck} = "offline" ]] && error "Internet connection is required for this function to work." "e"
+        ;;
     esac
 }
 

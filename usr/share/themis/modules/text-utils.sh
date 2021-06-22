@@ -75,6 +75,18 @@ function simtext() {
 }
 
 error() {
-    echo -e "${Bred}Error Occured Cause${reset}: ${1}"
+    echo -e "${Bred}Error Occured Cause${reset}: ${1}."
     [[ ${2} =~ ^(e|E) ]] && exit 1
+}
+
+success() {
+    echo -e "${Bgreen}Success${reset}: ${1}."
+}
+
+warn() {
+    echo -e "${Byellow}Warning${reset}: ${1}."
+}
+
+info() {
+    echo -e "${Bpurple}Info${reset}: ${1}"
 }
