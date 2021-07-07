@@ -206,7 +206,7 @@ installpackage() {
                                     [ -d ${pkgmd}/${package} ] && rm -rf ${pkgmd}/${package}
                                     mkdir ${pkgmd}/${package} && success "metadata directory has created"
                                     [ -e CONTROL ] && cp ./CONTROL ${pkgmd}/${package} || error "¿taşşak mi geçiyorsun canim?" "e"
-                                    [ -e LICENSE ] && { mkdir -p /usr/share/doc/packages/${package} && cp ./LICENSE /usr/share/doc/packages/${package} && success "License found and copied" ; }
+                                    [ -e LICENSE ] && { mkdir -p /usr/share/licenses/${package} && cp ./LICENSE /usr/share/licenses/${package} && success "License found and copied" ; }
                                     [ -e README.* ] && { mkdir -p /usr/share/doc/packages/${package} && cp ./README.* /usr/share/doc/packages/${package} && success "Readme file(s) found and copied" ; }
                                     ascii-art "sleepcat"
                                     echo -e "package: ${Byellow}${package}${reset}\nversion: ${Byellow}${version}${reset}\nmaintainer: ${Byellow}${maintainer}${reset}\ndescription: ${Byellow}${description}${reset}"
@@ -260,7 +260,7 @@ uninstallpackage() {
         source "${1}/CONTROL"
         # aha bak buraya işte build'İn için de ki kurulum yapacak olan fonksyonların tersine mühendislik uygulanmış hali tanımlanacak
         [ -d /usr/share/doc/packages/${package} ] && rm -rf /usr/share/doc/packages/${package}
-        [ -d /usr/share/licences/${package} ] && rm -rf /usr/share/licences/${package}
+        [ -d /usr/share/licenses/${package} ] && rm -rf /usr/share/licenses/${package}
         basedir() {
             if [ ${#} -gt 0 ] ; then
                 for y in $(seq 1 ${#}) ; do

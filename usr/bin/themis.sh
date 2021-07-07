@@ -280,10 +280,10 @@ ${Bblue}--version${reset},${Bblue} version${reset},${Bblue} -v${reset}: The vers
                             echo -e "${reset}"
                         fi
                         
-                        if [[ -e "/usr/share/licences/${@:i:1}/LICENSE" ]] ; then
+                        if [[ -e "/usr/share/licenses/${@:i:1}/LICENSE" ]] ; then
                             setchar="-"
                             centexpad "LICENSE - First 10 line"
-                            head -n 10 "/usr/share/licences/${@:i:1}/LICENSE"
+                            head -n 10 "/usr/share/licenses/${@:i:1}/LICENSE"
                             centexpad "LICENSE"
                             echo -e "${reset}"
                         fi
