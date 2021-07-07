@@ -272,18 +272,18 @@ ${Bblue}--version${reset},${Bblue} version${reset},${Bblue} -v${reset}: The vers
                         echo "${maintainer} thanks you for use ${package} Version ${version}"
                         echo -e "\n${Bblue}package${reset}: ${Bwhite}${package}${reset}\n${Bblue}version${reset}: ${Bwhite}${version}${reset}\n${Bblue}maintainer${reset}: ${Bwhite}${maintainer}${reset}\n${Bblue}description${reset}: ${Bwhite}${description}${reset}"
                         
-                        if [ -e ${pkgmd}/${@:i:1}/README.* ] ; then
+                        if [ -e /usr/share/doc/packages/${@:i:1}/README.* ] ; then
                             setchar="-"
                             centexpad "README File(s)"
-                            cat ${pkgmd}/${@:i:1}/README.*
+                            file /usr/share/doc/packages/${@:i:1}/README.*
                             centexpad "README"
                             echo -e "${reset}"
                         fi
                         
-                        if [[ -e "${pkgmd}/${@:i:1}/LICENSE" ]] ; then
+                        if [[ -e "/usr/share/licences/${@:i:1}/LICENSE" ]] ; then
                             setchar="-"
                             centexpad "LICENSE - First 10 line"
-                            head -n 10 "${pkgmd}/${@:i:1}/LICENSE"
+                            head -n 10 "/usr/share/licences/${@:i:1}/LICENSE"
                             centexpad "LICENSE"
                             echo -e "${reset}"
                         fi

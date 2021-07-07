@@ -102,6 +102,28 @@ installpackage() {
                             fi
                         else
                             error "please specify the directory or file and target"
+                            metadatastatus="bad"
+                            return 1
+                        fi
+                    }
+                    modulesh() {
+                        if [[ $(command -v modulesh) ]] && [[ -d /local/lib/modulesh/ ]]  ; then
+                            if [[ ! -z ${1} ]] ; then
+                                if [ -f ./${1} ] ; then
+                                    cp ./${1} /local/lib/modulesh/${package}.sh
+                                else
+                                    error "module: ${1} not found in source files"
+                                    metadatastatus="bad"
+                                    return 1
+                                fi
+                            else
+                                error "please specify the module file"
+                                metadatastatus="bad"
+                                return 1
+                            fi
+                        else
+                            error "command modulesh or modulesh lib dir not found. So are you use themis without modulesh?"
+                            metadatastatus="bad"
                             return 1
                         fi
                     }
@@ -184,8 +206,8 @@ installpackage() {
                                     [ -d ${pkgmd}/${package} ] && rm -rf ${pkgmd}/${package}
                                     mkdir ${pkgmd}/${package} && success "metadata directory has created"
                                     [ -e CONTROL ] && cp ./CONTROL ${pkgmd}/${package} || error "¿taşşak mi geçiyorsun canim?" "e"
-                                    [ -e LICENSE ] && { cp ./LICENSE ${pkgmd}/${package} && success "License found and copied" ; }
-                                    [ -e README.* ] && { cp ./README.* ${pkgmd}/${package} && success "Readme file(s) found and copied" ; }
+                                    [ -e LICENSE ] && { mkdir -p /usr/share/doc/packages/${package} && cp ./LICENSE /usr/share/doc/packages/${package} && success "License found and copied" ; }
+                                    [ -e README.* ] && { mkdir -p /usr/share/doc/packages/${package} && cp ./README.* /usr/share/doc/packages/${package} && success "Readme file(s) found and copied" ; }
                                     ascii-art "sleepcat"
                                     echo -e "package: ${Byellow}${package}${reset}\nversion: ${Byellow}${version}${reset}\nmaintainer: ${Byellow}${maintainer}${reset}\ndescription: ${Byellow}${description}${reset}"
                                     success "The operation completed and no fatal error was encountered."
@@ -237,6 +259,8 @@ uninstallpackage() {
         description=""
         source "${1}/CONTROL"
         # aha bak buraya işte build'İn için de ki kurulum yapacak olan fonksyonların tersine mühendislik uygulanmış hali tanımlanacak
+        [ -d /usr/share/doc/packages/${package} ] && rm -rf /usr/share/doc/packages/${package}
+        [ -d /usr/share/licences/${package} ] && rm -rf /usr/share/licences/${package}
         basedir() {
             if [ ${#} -gt 0 ] ; then
                 for y in $(seq 1 ${#}) ; do
@@ -251,6 +275,15 @@ uninstallpackage() {
             else
                 error "file or director(y/ies) not specified"
                 removestatus="bad"
+                return 1
+            fi
+        }
+        modulesh() {
+            # argüman yada parametreye gerek yok öntanımlı direkt
+            if [[  -f /local/lib/modulesh/${package}.sh ]] ; then
+                rm -rf /local/lib/modulesh/${package}.sh
+            else
+                warn "modulesh function used and that argument is ${1}. But module not found so that file removed manually."
             fi
         }
         # ===========================================================================================================================
