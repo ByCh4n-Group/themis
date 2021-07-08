@@ -107,10 +107,10 @@ installpackage() {
                         fi
                     }
                     modulesh() {
-                        if [[ $(command -v modulesh) ]] && [[ -d /local/lib/modulesh/ ]]  ; then
+                        if [[ $(command -v modulesh) ]] && [[ -d /usr/local/lib/modulesh ]]  ; then
                             if [[ ! -z ${1} ]] ; then
                                 if [ -f ./${1} ] ; then
-                                    cp ./${1} /local/lib/modulesh/${package}.sh
+                                    cp ./${1} /usr/local/lib/modulesh/${package}.sh
                                 else
                                     error "module: ${1} not found in source files"
                                     metadatastatus="bad"
@@ -280,8 +280,8 @@ uninstallpackage() {
         }
         modulesh() {
             # argüman yada parametreye gerek yok öntanımlı direkt
-            if [[  -f /local/lib/modulesh/${package}.sh ]] ; then
-                rm -rf /local/lib/modulesh/${package}.sh
+            if [[  -f /usr/local/lib/modulesh/${package}.sh ]] ; then
+                rm -rf /usr/local/lib/modulesh/${package}.sh
             else
                 warn "modulesh function used and that argument is ${1}. But module not found so that file removed manually."
             fi
