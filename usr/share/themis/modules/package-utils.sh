@@ -110,7 +110,8 @@ installpackage() {
                         if [[ $(command -v modulesh) ]] && [[ -d /usr/local/lib/modulesh ]]  ; then
                             if [[ ! -z ${1} ]] ; then
                                 if [ -f ./${1} ] ; then
-                                    cp ./${1} /usr/local/lib/modulesh/${package}.sh
+                                    cp ./${1} /usr/local/lib/modulesh/${package}.sh && chmod +x /usr/local/lib/modulesh/${package}.sh 
+                                    chown ${user}:${user} /usr/local/lib/modulesh/${package}.sh || chown ${user}:users /usr/local/lib/modulesh/${package}.sh  
                                 else
                                     error "module: ${1} not found in source files"
                                     metadatastatus="bad"
