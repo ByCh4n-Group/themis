@@ -229,7 +229,7 @@ installpackage() {
                         status="bad"
                     fi
                 else
-                    error "${package}: that package already installed please before remove than try install again."
+                    error "${package}: that package already installed please before remove then try install again."
                     status="bad"
                 fi
             else
