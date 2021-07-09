@@ -18,8 +18,8 @@
 
 # Kalp Allah'ın mülküdür. Göğsünde atınca senin mi sandın?
 
-# major(1).minor(0).patch(1)
-version="1.0.1"
+# major(1).minor(0).patch(0)
+version="1.0.0"
 maintainer="lazypwny"
 
 ## Configuration
