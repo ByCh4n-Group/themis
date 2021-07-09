@@ -18,8 +18,8 @@
 
 # Kalp Allah'ın mülküdür. Göğsünde atınca senin mi sandın?
 
-# major(1).minor(0).patch(0)
-version="1.0.0"
+# major(1).minor(0).patch(1)
+version="1.0.1"
 maintainer="lazypwny"
 
 ## Configuration
@@ -74,7 +74,7 @@ and update the repository settings, then specify the package or packages you wan
 are available in the repository, it will download and install it.
 ${Bblue}--uninstall${reset},${Bblue} uninstall${reset}, ${Bblue}--kaldır${reset}, ${Bblue}kaldır${reset},${Bblue} -u${reset}: You can delete an installed package or packages with the uninstall argument.
 ${Bblue}--updateindex${reset},${Bblue} updateindex${reset}, ${Bblue}--indeksgüncelle${reset}, ${Bblue}indexgüncelle${reset},${Bblue} -up${reset}: The update index argument updates the settings of the repositories (updates the catalogs)
-In version V1.0.0, there is no system to replace old packages with new packages, but it is recommended to use this argument periodically when this system is added in the future.
+In version V1, there is no system to replace old packages with new packages, but it is recommended to use this argument periodically when this system is added in the future.
 ${Bblue}--list${reset},${Bblue} list${reset},${Bblue} -l${reset}: The list argument shows the installed packages, and if '--repositories, repositories, depo, repo' is used as the second argument,
 it shows the package information in the catalogs of the existing repositories, that is, packages that can be installed from the internet.
 ${Bblue}--info${reset},${Bblue} info${reset},${Bblue} --bilgi${reset},${Bblue} bilgi${reset},${Bblue} -i${reset}: The info argument provides detailed information about the package or packages.
