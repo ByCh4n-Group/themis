@@ -10,10 +10,17 @@ updateindex() {
         packages=""
         wget "${1}/index.sh" && source ./index.sh || repostatus="bad"
         repostatus="nice"
+<<<<<<< HEAD
         [[ -z "${maintainer}" ]] && maintainer="anyone"
         [[ -z "${reponame}" ]] && repostatus="bad"
         [[ -z "${#packages[@]}" ]] && repostatus="bad"
         if [[ "${repostatus}" = "nice" ]] ; then
+=======
+        [[ -z ${maintainer} ]] && maintainer="anyone"
+        [[ -z ${reponame} ]] && repostatus="bad"
+        [[ -z ${#packages[@]} ]] && repostatus="bad"
+        if [[ ${repostatus} = "nice" ]] ; then
+>>>>>>> 309ad58f8ab55ce04fdcb5afbb6b371663747ba0
             if [ -d "${repodir}/${reponame}" ] ; then
                 if [ -e "${repodir}/${reponame}/index.sh" ] ; then
                     if [[ "$(sha256sum index.sh | awk '{print $1}')" != "$(sha256sum "${repodir}/${reponame}/index.sh" | awk '{print $1}')" ]] ; then
