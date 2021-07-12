@@ -205,8 +205,8 @@ ${Bblue}--version${reset},${Bblue} version${reset},${Bblue} -v${reset}: The vers
                 echo -e "${Bpurple}"
                 ascii-art "anime-girl"
                 echo -e "${reset}"
-                [[ $(ls ${repodir} | wc -l) = 0 ]] && info "this place looks a bit deserted let's warm it up 'sudo themis -up'"
-                for i in $(seq 1 $(ls ${repodir} | wc -l)) ; do
+                [[ $(ls "${repodir}" | wc -l) = 0 ]] && info "this place looks a bit deserted let's warm it up 'sudo themis -up'"
+                for i in $(seq 1 $(ls "${repodir}" | wc -l)) ; do
                     repostatus="nice"
                     setrepomdir=$(ls ${repodir} | awk NR==$i'{print $1}')
                     if [[ -e "${repodir}/${setrepomdir}/index.sh" ]] ; then
@@ -214,9 +214,9 @@ ${Bblue}--version${reset},${Bblue} version${reset},${Bblue} -v${reset}: The vers
                         reponame=""
                         packages=""
                         source "${repodir}/${setrepomdir}/index.sh"
-                        [ -z ${maintainer} ] && maintainer="anyone"
-                        [ -z ${reponame} ] && repostatus="bad"
-                        [[ -z ${packages[@]} ]] && repostatus="bad"
+                        [[ -z "${maintainer}" ]] && maintainer="anyone"
+                        [[ -z "${reponame}" ]] && repostatus="bad"
+                        [[ -z "${packages[@]}" ]] && repostatus="bad"
                         if [[ ${repostatus} = "nice" ]] ; then
                             centexpad "${reponame}"
                             echo -e " ${Bwhite}repository:${reset} ${packages[0]}\n"
