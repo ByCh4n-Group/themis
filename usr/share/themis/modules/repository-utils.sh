@@ -10,8 +10,8 @@ updateindex() {
         packages=""
         wget "${1}/index.sh" && source ./index.sh || repostatus="bad"
         repostatus="nice"
-        [ -z ${maintainer} ] && maintainer="anyone"
-        [ -z ${reponame} ] && repostatus="bad"
+        [[ -z ${maintainer} ]] && maintainer="anyone"
+        [[ -z ${reponame} ]] && repostatus="bad"
         [[ -z ${#packages[@]} ]] && repostatus="bad"
         if [[ ${repostatus} = "nice" ]] ; then
             if [ -d "${repodir}/${reponame}" ] ; then
