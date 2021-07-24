@@ -1,3 +1,4 @@
+# The project is under maintenance. version 1.1.0 will be available with more features
 # themis 1.0.0
 
 ![logo](https://user-images.githubusercontent.com/54551308/124690597-1e2adc80-dee3-11eb-97b7-06b35baf862c.png)
