@@ -1,26 +1,5 @@
 #!/bin/bash
 
-###############################################################################################
-#				a script by stackoverflow ;)				                                  #
-# https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux #
-# 				source ./color.sh					                                          #
-###############################################################################################
-
-    ##!-> this module is a compiled version of various color
-    ##!-> variables in the shell. Source: (stackoverflow)
-    ##!-> avaible color variables in this module:
-    ##!->
-    ##!-> ${reset} # turn default color variable
-    ##!-> ${black} , ${red} , ${green} , ${yellow} , ${blue} , ${purple} , ${cyan} , ${white}
-    ##!-> ${Bblack} , ${Bred} , ${Bgreen} , ${Byellow} , ${Bblue} , ${Bpurple} , ${Bcyan} , ${Bwhite}
-    ##!-> ${Ublack} , ${Ured} , ${Ugreen} , ${Uyellow} , ${Ublue} , ${Upurple} , ${Ucyan} , ${Uwhite}
-    ##!-> ${BGblack} , ${BGred} , ${BGgreen} , ${BGyellow} , ${BGblue} , ${BGpurple} , ${BGcyan} , ${BGwhite}
-    ##!-> ${Iblack} , ${Ired} , ${Igreen} , ${Iyellow} , ${Iblue} , ${Ipurple} , ${Icyan} , ${Iwhite}
-    ##!-> ${BIblack} , ${BIred} , ${BIgreen} , ${BIyellow} , ${BIblue} , ${BIpurple} , ${BIcyan} , ${BIwhite}
-    ##!-> ${BGIblack} , ${BGIred} , ${BGIgreen} , ${BGIyellow} , ${BGIblue} , ${BGIpurple} , ${BGIcyan} , ${BGIwhite}
-    ##!->
-    ##!-> for example (in bash script): echo -e "${red} test 123 ${Iblue} Dönüştüm canavara Ölümsüz bir hayvana ${reset}" 
-
 # Reset
 reset='\033[0m'           # Text Reset
 
@@ -94,23 +73,17 @@ BGIpurple='\033[0;105m'  # Purple
 BGIcyan='\033[0;106m'    # Cyan
 BGIwhite='\033[0;107m'   # White
 
-
-    ##!-> radnomcolor is a function you can call this function before a text for example
-    ##!-> randomcolor ; echo "this is a example${reset}" and it will make your word to ink
 randomcolor() {
-    echo -ne "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m"
-}
-
-case ${1} in
-    randomcolor)
-        randomcolor
-    ;;
-esac
-
-function random_colour {
-    local bold=$(( $RANDOM % 2 ))
-    local code=$(( 30 + $RANDOM % 8 ))
-    printf "%d;%d\n" $bold $code
+    case ${1} in
+        simple)
+            echo -ne "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m"
+        ;;
+        cool)
+            local bold=$(( $RANDOM % 2 ))
+            local code=$(( 30 + $RANDOM % 8 ))
+            printf "%d;%d\n" $bold $code
+        ;;
+    esac
 }
 
 lolbash() {

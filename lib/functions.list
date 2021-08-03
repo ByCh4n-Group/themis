@@ -1,0 +1,36 @@
+===============Update===============
+grep -n '() {' *.sh > functions.list 
+====================================
+themis-ascii-utils.sh:3:yesorno() {
+themis-ascii-utils.sh:24:pressanykeysec() {
+themis-ascii-utils.sh:30:pressanykey() {
+themis-ascii-utils.sh:34:centexpad() {
+themis-ascii-utils.sh:41:centex() {
+themis-ascii-utils.sh:47:simtext() {
+themis-colors.sh:76:randomcolor() {
+themis-colors.sh:89:lolbash() {
+themis-dev-utils.sh:3:makepackage() {
+themis-dev-utils.sh:138:                            if [[ $(grep "build() {" "${@:i:1}/CONTROL") ]] ; then
+themis-network-utils.sh:3:netcheck() {
+themis-operating-systems-utils.sh:4:checkroot() {
+themis-operating-systems-utils.sh:15:definebase() {
+themis-operating-systems-utils.sh:33:update-os-catalogs() {
+themis-operating-systems-utils.sh:34:    up() {
+themis-operating-systems-utils.sh:70:install-os-pkg() {
+themis-operating-systems-utils.sh:93:uninstall-os-pkg() {
+themis-operating-systems-utils.sh:115:check() {
+themis-operating-systems-utils.sh:141:just-check() {
+themis-package-utils.sh:3:installpackage() {
+themis-utils.sh:3:spintwo() {
+themis-utils.sh:18:error() {
+themis-utils.sh:30:warn() {
+themis-utils.sh:34:info() {
+themis-utils.sh:38:success() {
+themis-utils.sh:42:found() {
+themis-utils.sh:46:notfound() {
+themis-utils.sh:58:themis-ascii-magic() {
+themis-utils.sh:73:themis-randendmsg() {
+themis-utils.sh:96:themis-tmp-manager() {
+themis-utils.sh:111:themis-lock-daemon() {
+themis-utils.sh:122:bye() {
+themis-utils.sh:128:check-all() {
