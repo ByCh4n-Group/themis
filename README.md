@@ -1,4 +1,21 @@
-# ! The project is under maintenance. version 1.1.0 will be available with more features !
+# ! We are working on a new version of our project, please use stable versions until version 2.0.0 !
+
+## todo list  
+- [ ] new features
+  - [ ] gpg check package
+  - [ ] gpg sign package
+  - [ ] gpg add pubkey 
+  - [ ] version check
+  - [ ] update package(s)
+  - [ ] download package(s)
+  - [ ] themis dependencie(s)
+  - [ ] create metadata
+  - [ ] list&write package list
+- [ ] update features
+  - [ ] install package(s)
+  - [ ] uninstall package(s)
+  - [ ] list package(s)
+
 # themis 1.0.0
 
 ![logo](https://user-images.githubusercontent.com/54551308/124690597-1e2adc80-dee3-11eb-97b7-06b35baf862c.png)
@@ -10,11 +27,15 @@ Themis is a script manager developed for modulesh, it will be more useful for al
 ### Dependences:
 tar, wget, curl, python3, python3-pip, ruby, gem
 
-### How to:
+### How to install develop release:
 You can easily install the script on your system using the make file.
 
 ```bash
 git clone https://github.com/ByCh4n-Group/themis.git && cd themis && sudo make install
+```
+### How to install stable release:
+```bash
+curl  
 ```
 
 ## Usage
