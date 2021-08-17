@@ -10,7 +10,7 @@ makepackage() {
     version=""
     maintainer=""
     description=""
-    dependences=""
+    dependencies=""
     debian_depends=""
     arch_depends=""
     aur_depends=""
@@ -45,38 +45,38 @@ makepackage() {
                             [[ -z ${description} ]] && description="you already know what to do ;)"
                             
                             # Bağımlımısın kardeş?
-                            if [[ ! -z ${dependences[@]} ]] ; then
-                                found "${#dependences[@]} themis dependence(s)"
+                            if [[ ! -z ${dependencies[@]} ]] ; then
+                                found "${#dependencies[@]} themis dependencie(s)"
                             fi
                             
                             # Debian
                             if [[ ! -z ${debian_depends[@]} ]] ; then
-                                found "${#debian_depends[@]} debian dependence(s)"
+                                found "${#debian_depends[@]} debian dependencie(s)"
                             fi
                
                             # Arch
                             if [[ ! -z ${arch_depends[@]} ]] ; then
-                                found "${#arch_depends[@]} arch dependece(s)"
+                                found "${#arch_depends[@]} arch dependencie(s)"
                             fi
                             
                             # Demo AUR
                             if [[ ! -z ${aur_depends[@]} ]] ; then
-                                found "${#aur_depends[@]} arch user repository depencence(s)"
+                                found "${#aur_depends[@]} arch user repository dependencie(s)"
                             fi
 
                             # Fedora
                             if [[ ! -z ${fedora_depends[@]} ]] ; then
-                                found "${#fedora_depends[@]} fedora dependence(s)"
+                                found "${#fedora_depends[@]} fedora dependencie(s)"
                             fi
                             
                             # Pisi
                             if [[ ! -z ${pisi_depends[@]} ]] ; then
-                                found "${#pisi_depends[@]} pisi dependence(s)"
+                                found "${#pisi_depends[@]} pisi dependencie(s)"
                             fi
                             
                             # OpenSUS
                             if [[ ! -z ${opensuse_depends[@]} ]] ; then
-                                found "${#opensuse_depends[@]} opensuse dependence(s)"
+                                found "${#opensuse_depends[@]} opensuse dependencie(s)"
                             fi
                             
                             # Python3
@@ -176,7 +176,7 @@ makepackage() {
                 fi
             else
                 status="false"
-                notfound "hmm that is not a directory"
+                error "hmm that is not a directory"
                 # bu bir dizin değil 
                 printf "${Bred}"
                 centex "Failed ${@:i:1}."
@@ -195,7 +195,6 @@ makepackage() {
     ########
 
     if [[ ${status} = "false" ]] ; then
-        themis-lock-daemon unlock
         error "Some package(s) can not be creared" "2"
     else
         success "${FUNCNAME} has completed and no error(s) occured"

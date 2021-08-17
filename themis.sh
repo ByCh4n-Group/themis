@@ -38,9 +38,11 @@ getlib() {
     fi
 }
 
-getlib "themis-colors" "themis-ascii-utils" "themis-operating-systems-utils" "themis-network-utils" "themis-utils"
+getlib "themis-colors" "themis-ascii-utils" "themis-operating-systems-utils" "themis-network-utils" "themis-core-utils"
 
 check-all
+
+trap bye INT 
 
 case ${1} in
     [hH][eE][lL][pP]|--[hH][eE][lL][pP]|-[hH])
@@ -62,18 +64,24 @@ case ${1} in
         makepackage "${@:2}"
         exit 0
     ;;
-    [lL][oO][cC][aA][lL][iI][nN][sS][tT][aA][lL][lL]|--[lL][oO][cC][aA][lL][iI][nN][sS][tT][aA][lL][lL]|-[lL][iI])
-        if [[ ! -f ${themis_lock} ]] ; then 
-            themis-lock-daemon lock
+    [sS][iI][gG][nN]|--[sS][iI][gG][nN]|-[sS][nN])
+        # also you can sign another type files with this argument
+        getlib tpg
+        __sign-file "${@:2}" && success "Signed $((${#} - 1)) Files" || error "some or all packages could not be signed"
+    ;;
+    [lL][oO][cC][aA][lL][iI][nN][sS][tT][aA][lL][lL]|--[lL][oO][cC][aA][lL][iI][nN][sS][tT][aA][lL][lL]|-[lL][iI]) 
+        if [[ ! -f ${themis_lock} ]] ; then
+            __themis-pid_manager start
             getlib "themis-package-utils"
-            themis-lock-daemon unlock
-            exit 0
+            __themis-pid_manager stop
         else
-            error "Themis has been locked from another process. If you think this is a mistake delete the ${themis_lock} file"
+            . ${themis_temp}/themis.pid
+            error "Themis is already running on pid '${themis_pid}'. If you think it's a mistake you can delete the '${themis_temp}/themis.pid' file" "2"
         fi
+        exit 0
     ;;
     *)
-        echo -e "'${1}$([[ -z ${1} ]] && echo " ")' is Unknow Option: Type '$(basename ${0}) --help' to see the arguments you can type."
+        echo -e "'${1}$([[ -z ${1} ]] && echo " ")' is an unknown option. Type to see the guide '$(basename ${0}) --help'"
         bye
     ;;
 esac

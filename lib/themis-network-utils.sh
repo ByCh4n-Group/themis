@@ -1,6 +1,6 @@
 #!/bin/bash
 
-netcheck() {
+__netcheck() {
     ping -q -w1 -c1 google.com &>/dev/null && netcheck="online" || netcheck="offline"
     case ${1} in
         print|PRINT|-p)
@@ -11,3 +11,4 @@ netcheck() {
         ;;
     esac
 }
+

@@ -1,6 +1,11 @@
 #!/bin/bash
 
-installpackage() {
-    echo "beqle moruq"
-    sleep 10
+__requirus() {
+    :
+}
+
+__installpackage() {
+    if [[ ${#} -gt 0 ]] ; then
+        :
+    fi
 }

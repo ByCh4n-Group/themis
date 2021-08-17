@@ -6,7 +6,6 @@ define install
 	cp ./themis.conf ./index.sh /usr/share/themis
 	install -m 755 ./completion/themis.sh /etc/bash_completion.d
 	install -m 755 ./themis.sh /usr/bin/themis
-	cd lib-pkgs
 endef
 
 define uninstall

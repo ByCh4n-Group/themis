@@ -73,7 +73,7 @@ BGIpurple='\033[0;105m'  # Purple
 BGIcyan='\033[0;106m'    # Cyan
 BGIwhite='\033[0;107m'   # White
 
-randomcolor() {
+__randomcolor() {
     case ${1} in
         simple)
             echo -ne "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m"
@@ -86,7 +86,7 @@ randomcolor() {
     esac
 }
 
-lolbash() {
+__lolbash() {
 	sentence="$*"
 	for (( i=0; i<${#sentence}; i++ )); do
 	    printf "\e[%sm%c" "$(random_colour)" "${sentence:i:1}"
