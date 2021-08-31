@@ -11,4 +11,3 @@ __netcheck() {
         ;;
     esac
 }
-

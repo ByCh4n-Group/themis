@@ -66,7 +66,7 @@ __get-pub-key() {
     esac
 }
 
-__sign-file() {
+tpg-sign-file() {
     __tpg-dep-check || return 1
     if [[ ${#} -gt 0 ]] ; then
         for _tpgX in $(seq 1 ${#}) ; do
@@ -98,7 +98,7 @@ __sign-file() {
     fi
 }
 
-__check-file() {
+tpg-check-file() {
     if [[ ${#} -gt 1 ]] ; then
         if [[ ${1} =~ ^[0-9]+$ ]] ; then
             for _tpgX in $(seq 2 ${#}) ; do

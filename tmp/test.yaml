@@ -1,0 +1,8 @@
+global:
+  input:
+    - "main.c"
+    - "main.h"
+  flags: [ "-O3", "-fpic" ]
+  sample_input:
+    -  { property1: value, property2: "value2" }
+    -  { property1: "value3", property2: 'value 4' }
