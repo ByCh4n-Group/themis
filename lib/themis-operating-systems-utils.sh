@@ -133,31 +133,8 @@ check() {
             error "module ${0}: Called function ${FUNCNAME}: Wrong usage."
         ;;
     esac
-    if [[ ${checksign} = "bad" ]] ; then
+    if [[ ${checksign} = "bad" ]] && [[ ${_checklevel} = "quit" ]] ; then
         exit 1
+        _checklevel="optional"
     fi
 }
-
-just-check() {
-    case ${1} in
-        d)
-            for check in $(seq 2 ${#}) ; do 
-                [[ -d "${@:check:1}" ]] || warn "Directory ${@:check:1} not found!"
-            done
-        ;;
-        f)
-            for i in $(seq 2 ${#}) ; do 
-                [[ -f "${@:check:1}" ]] || warn "File ${@:check:1} not found!"
-            done
-        ;;
-        t)
-            for i in $(seq 2 ${#}) ; do 
-                [[ $(command -v ${@:check:1}) ]] || warn "Trigger ${@:check:1} not found! Please install that package."
-            done
-        ;;
-        *)
-            error "module ${0}: Called function ${FUNCNAME}: Wrong usage."
-        ;;
-    esac
-}
-

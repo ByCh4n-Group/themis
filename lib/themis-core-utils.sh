@@ -5,7 +5,7 @@ __yesorno() {
     case "$response" in
         [nN]) 
             if [[ ${2} = "" ]] ; then
-                Yesorno="false"
+                yesorno="false"
                 echo "Aborted"
             else
                 ${2}
@@ -13,7 +13,7 @@ __yesorno() {
             ;;
         *)
             if [[ ${1} = "" ]] ; then
-                Yesorno="true"
+                yesorno="true"
             else
                 ${1}
             fi
@@ -29,15 +29,6 @@ __pressanykeysec() {
 
 __pressanykey() {
     read -n 1 -r -s -p $'Press Any Key To Continue...\n'
-}
-
-__simtext() {
-    yazi="${1}"
-    [ -z ${sleep} ] && sleep="0.075" || sleep=${sleep}
-    for ((i=0; i<${#yazi}; i++))
-        do sleep $sleep
-            printf "${yazi:$i:1}"
-    done
 }
 
 __themis-tmp-manager() {
@@ -80,3 +71,5 @@ bye() {
 check-all() {
     :
 }
+
+# always in develop

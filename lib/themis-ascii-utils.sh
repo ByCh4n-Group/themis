@@ -17,7 +17,7 @@ spintwo() {
 
 error() {
     echo -e "\033[0;31m[-] Error Occured\033[0m: ${1}"
-    case ${1} in
+    case "${2}" in
         1)
             return 1
         ;;
@@ -45,7 +45,7 @@ found() {
 
 notfound() {
     echo -e "\033[1;31m[-] Not Found!\033[0m: ${1}.."
-    case ${1} in
+    case "${2}" in
         1)
             return 1
         ;;
@@ -67,3 +67,14 @@ centex() {
     title=$1
     printf "%*s\n" $(((${#title}+$COLUMNS)/2)) "$title"
 }
+
+simtext() {
+    yazi="${1}"
+    [ -z ${sleep} ] && sleep="0.075" || sleep=${sleep}
+    for ((i=0; i<${#yazi}; i++))
+        do sleep $sleep
+            printf "${yazi:$i:1}"
+    done
+}
+
+# lazypwny751 - 09-09-2021

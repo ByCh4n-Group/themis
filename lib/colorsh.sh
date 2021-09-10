@@ -93,3 +93,5 @@ __lolbash() {
 	done
 	echo -e '\e[0m'
 }
+
+# lazypwny751 - 09-09-2021

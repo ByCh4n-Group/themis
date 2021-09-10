@@ -1,6 +1,6 @@
 #!/bin/bash
 
-makepackage() {
+__makepackage() {
     ########
     # Head #
     ########

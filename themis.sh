@@ -38,7 +38,7 @@ getlib() {
     fi
 }
 
-getlib "themis-colors" "themis-ascii-utils" "themis-operating-systems-utils" "themis-network-utils" "themis-core-utils"
+getlib "colorsh" "themis-ascii-utils" "themis-operating-systems-utils" "themis-network-utils" "themis-core-utils"
 
 check-all
 
@@ -61,7 +61,7 @@ case ${1} in
     ;;
     [mM][aA][kK][eE][pP][aA][cC][kK][aA][gG][eE]|--[mM][aA][kK][eE][pP][aA][cC][kK][aA][gG][eE]|-[mM][pP])
         getlib "themis-dev-utils"
-        makepackage "${@:2}"
+        __makepackage "${@:2}"
         exit 0
     ;;
     [sS][iI][gG][nN]|--[sS][iI][gG][nN]|-[sS][nN])
