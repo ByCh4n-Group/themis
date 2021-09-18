@@ -147,7 +147,7 @@ btb-check-base() {
             if [[ $(echo "${2}" | grep " ") = "" ]] ; then
                 [[ -d "${2}" ]] && { echo "[+] ${2}: exist" ; } || { echo "[-] ${2}: doesn't exist" ; }
             fi
-            __btbm close
+            __btbtm stop
         else
             __btbtm stop
             return 2
@@ -284,16 +284,16 @@ btb-check-data() {
             if [[ -d ./"${2}" ]] ; then
                 if [[ -f ./"${2}"/"${3}" ]] ; then
                     echo "[+] data '${3}' is exist in '${2}'"
-                    __btbm close
+                    __btbtm stop
                     return 0
                 else
                     echo "[-] data '${3}' doesn't exist in '${2}'"
-                    __btbm close
+                    __btbtm stop
                     return 1
                 fi
             else
                 echo "base '${2}' doesn't exist."
-                __btbm close && return 1 || return 2
+                __btbtm stop && return 1 || return 2
             fi
         else
             __btbtm stop
@@ -312,16 +312,16 @@ btb-call-data() {
             if [[ -d ./"${2}" ]] ; then
                 if [[ -f ./"${2}"/"${3}" ]] ; then
                     cat ./"${2}"/"${3}"
-                    __btbm close
+                    __btbtm stop
                     return 0
                 else
                     echo "[-] data '${3}' doesn't exist in '${2}'"
-                    __btbm close
+                    __btbtm stop
                     return 1
                 fi
             else
                 echo "base '${2}' doesn't exist."
-                __btbm close && return 1 || return 2
+                __btbtm stop && return 1 || return 2
             fi
         else
             __btbtm stop
@@ -362,9 +362,9 @@ btb-call-index() {
                     echo "default (none of above)"
                 ;;
             esac
-            __btbm close && return 0 || return 2
+            __btbtm stop && return 0 || return 2
         else
-            __btbm close && return 1 || return 2
+            __btbtm stop && return 1 || return 2
         fi
     else
         echo "Please give me any .${btbfe} file ;-;"
