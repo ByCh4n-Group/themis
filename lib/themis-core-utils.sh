@@ -63,12 +63,16 @@ __themis-pid_manager() {
 }
 
 bye() {
-    __themis-tmp-manager stop
     __themis-pid_manager stop
-    exit
+    __themis-tmp-manager stop
+    exit "${1}"
 }
 
 check-all() {
+    :
+}
+
+fixit() {
     :
 }
 

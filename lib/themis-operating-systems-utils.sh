@@ -1,14 +1,13 @@
 #!/bin/bash
 
-
 checkroot() {
     if [[ ${EUID} != 0 ]] ; then
-            echo -e "\033[0;31mpls try with root privalages 'sudo ${0}'\033[0m"
-            checkroot="false"
-            [[ ${1} =~ ^(exit|EXIT|--exit|--EXIT|-e)$ ]] && exit 1
+            echo -e "\033[0;31mpls try with root privalages 'sudo ${0}'\033[0m" # standart error output
+            checkroot="false" # variable for user to be use
+            [[ ${1} =~ ^(exit|EXIT|--exit|--EXIT|-e)$ ]] && exit 1 # or direct quit
         else
-            echo -e "\033[0;32mset user have super cow powers....\033[0m"
-            checkroot="true"
+            echo -e "\033[0;32mset user have super cow powers....\033[0m" # standart output
+            checkroot="true" # variable for user to be use
     fi
 }
 
@@ -112,29 +111,71 @@ uninstall-os-pkg() {
     esac
 }
 
+__is_arch() {
+    case "${1}" in
+        [xX]86)
+            if [[ $(uname -i) = "x86" ]] ; then
+                return 0
+            else
+                return 1
+            fi
+        ;;
+        [xX]64|[xX]86_[xX]64)
+            if [[ $(uname -i) = "x86_64" ]] ; then
+                return 0
+            else
+                return 1
+            fi
+        ;;
+        [aA][aA][rR][cC][hH]64)
+            if [[ $(uname -i) = "aarch64" ]] ; then
+                return 0
+            else
+                return 1
+            fi
+        ;;
+        *)
+            echo "unknow architecture."
+            # So script then +
+            return 0
+        ;;
+    esac
+}
+
 check() {
     case ${1} in
         d)
             for check in $(seq 2 ${#}) ; do 
-                [[ -d "${@:check:1}" ]] || { error "Directory ${@:check:1} not found!" ; checksign="bad" ; }
+                [[ -d "${@:check:1}" ]] || { tos_chk="false" ; error "Directory ${@:check:1} not found!" ; }
             done
         ;;
         f)
             for i in $(seq 2 ${#}) ; do 
-                [[ -f "${@:check:1}" ]] || { error "File ${@:check:1} not found!" ; checksign="bad" ; }
+                [[ -f "${@:check:1}" ]] || { error "File ${@:check:1} not found!" ; }
             done
         ;;
         t)
             for i in $(seq 2 ${#}) ; do 
-                [[ $(command -v ${@:check:1}) ]] || { error "Trigger ${@:check:1} not found! Please install that package." ; checksign="bad" ; }
+                [[ $(command -v ${@:check:1}) ]] || { error "Trigger ${@:check:1} not found! Please install that package." ; }
             done
         ;;
         *)
             error "module ${0}: Called function ${FUNCNAME}: Wrong usage."
         ;;
     esac
-    if [[ ${checksign} = "bad" ]] && [[ ${_checklevel} = "quit" ]] ; then
-        exit 1
-        _checklevel="optional"
+
+    if [[ ${tos_chk} = "false" ]] ; then
+        if [[ ${tos_check_opt} = "none" ]] ; then
+            :
+        elif [[ ${tos_check_opt} = "return" ]] ; then
+            tos_check_opt="none"
+            return 1
+        elif [[ ${tos_check_opt} = "exit" ]] ; then
+            tos_check_opt="none" # ther are no export but idk why i put this
+            exit 1
+        fi
     fi
 }
+
+# lazypwny751 - 10-09-2021
+# Themis'in en kanser kütüphanesi

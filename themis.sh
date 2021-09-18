@@ -46,12 +46,18 @@ trap bye INT
 
 case ${1} in
     [hH][eE][lL][pP]|--[hH][eE][lL][pP]|-[hH])
-        echo -e "There are X flag(s):
---
+        echo -e "There are X flag(s): --version, --makepackage, --sign, --localinstall
+--version | version | -v:
+    Shows current version of ${BASH_SOURCE[0]}.
 
---
+--makepackage | makepackage | -mp:
+    You can create your own cross packages of scripts or programs.
 
---
+--sign | sign | -sn:
+    Sign your own packages against theft.
+
+--localinstall | localinstall | -li:
+    Install packages from your file system.
 "
     exit 0
     ;;
@@ -61,27 +67,27 @@ case ${1} in
     ;;
     [mM][aA][kK][eE][pP][aA][cC][kK][aA][gG][eE]|--[mM][aA][kK][eE][pP][aA][cC][kK][aA][gG][eE]|-[mM][pP])
         getlib "themis-dev-utils"
-        __makepackage "${@:2}"
+        __makepackage ${@:2}
         exit 0
     ;;
     [sS][iI][gG][nN]|--[sS][iI][gG][nN]|-[sS][nN])
         # also you can sign another type files with this argument
-        getlib tpg
+        getlib "tpg"
         __sign-file "${@:2}" && success "Signed $((${#} - 1)) Files" || error "some or all packages could not be signed"
     ;;
     [lL][oO][cC][aA][lL][iI][nN][sS][tT][aA][lL][lL]|--[lL][oO][cC][aA][lL][iI][nN][sS][tT][aA][lL][lL]|-[lL][iI]) 
         if [[ ! -f ${themis_lock} ]] ; then
             __themis-pid_manager start
-            getlib "themis-package-utils"
+            getlib "btb" "themis-package-utils"
             __themis-pid_manager stop
         else
             . ${themis_temp}/themis.pid
             error "Themis is already running on pid '${themis_pid}'. If you think it's a mistake you can delete the '${themis_temp}/themis.pid' file" "2"
         fi
-        exit 0
+        bye 0
     ;;
     *)
         echo -e "'${1}$([[ -z ${1} ]] && echo " ")' is an unknown option. Type to see the guide '$(basename ${0}) --help'"
-        bye
+        exit 0
     ;;
 esac

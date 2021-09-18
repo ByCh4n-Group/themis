@@ -349,7 +349,7 @@ btb-call-index() {
                     fi
                 ;;
                 [nN][uU][mM][bB][eE][rR]-[bB][aA][sS][eE]|--[nN][uU][mM][bB][eE][rR]-[bB][aA][sS][eE]|-[nN][bB])
-                    echo "$(($(ls -d */ | wc -l) - 1))"
+                    ls -d */ | wc -l
                 ;;
                 [nN][uU][mM][bB][eE][rR]-[dD][aA][tT][aA]|--[nN][uU][mM][bB][eE][rR]-[dD][aA][tT][aA]|-[nN][dD])
                     if [[ -d "${3}" ]] ; then
@@ -604,6 +604,53 @@ interactive() {
                     esac
                 done
             ;;
+            [wW][rR][iI][tT][eE][-" "][dD][aA][tT][aA][iI][lL])
+                while :; do
+                    echo -ne "\033[0;34mbtb-${btbver}\033[0m\033[0m\033[0m/\033[0;34mwrite-data\033[0m:\033[0;35m>\033[0m " ; read wdi
+                    case "${wdi}" in
+                        [sS][hH][oO][wW][-" "][oO][pP][tT][iI][oO][nN][sS])
+                            echo -e "* bank=${bank}\n* basename=${basename}\n* filename=${filename}\ndata=${data}"
+                        ;;
+                        bank=*)
+                            export "${wdi}" && echo "${wdi}"
+                        ;;
+                        basename=*)
+                            export "${wdi}" && echo "${wdi}"
+                        ;;
+                        filename=*)
+                            export "${wdi}" && echo "${wdi}"
+                        ;;
+                        data=*)
+                            export "${wdi}" && echo "${wdi}"
+                        ;;
+                        [rR][uU][nN])
+                            if [[ $(file "${bank}" | grep "gzip compressed data") ]] && [[ ! -z "${basename}" ]] && [[ ! -z "${filename}" ]] ; then
+                                btb-write-datail "${bank}" "${basename}" "${filename}" "${data}"
+                                _itok
+                            else
+                                echo "Some options aren't ok please check that options and try again."
+                            fi
+                        ;;
+                        [hH][eE][lL][pP])
+                        ;;
+                        [cC][lL][eE][aA][rR])
+                            clear
+                        ;;
+                        [eE][xX][eE][cC]" "*)
+                            ${wdi:5}
+                        ;;
+                        [bB][aA][cC][kK])
+                            break
+                        ;;
+                        [eE][xX][iI][tT])
+                            exit 0
+                        ;;
+                        *)
+                            echo "'$([[ -z ${wdi} ]] && echo ' ' || echo ${wdi})' is an unknow option type 'help' to see what it can do there."
+                        ;;
+                    esac
+                done
+            ;;
             [rR][eE][mM][oO][vV][eE][-" "][dD][aA][tT][aA])
                 while :; do
                     echo -ne "\033[0;34mbtb-${btbver}\033[0m\033[0m\033[0m/\033[0;34mremove-data\033[0m:\033[0;35m>\033[0m " ; read rdi
@@ -811,15 +858,16 @@ option\t\t\t\tnumber-data
             [hH][eE][lL][pP])
                 echo -e "
  \033[0;36mCommand\033[0m:\t\t\t \033[0;36mDescription\033[0m:
-create bank
-create base
-remove base
-check  base
-write  data
-remove data
-check  data
-call   data
-call  index
+create  bank
+create  base
+remove  base
+check   base
+write   data
+write datail
+remove  data
+check   data
+call    data
+call   index
 "
             ;;
             [cC][lL][eE][aA][rR])

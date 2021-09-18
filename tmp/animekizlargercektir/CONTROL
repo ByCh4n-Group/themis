@@ -1,0 +1,8 @@
+package="ulkucu-anime-kizi"
+version="1.0.0"
+maintainer="EkRAM imamoglu"
+description="ekram imamoglunun anime kizlari ile yaptigi gizli ittifakı anlatan bir calisma"
+
+build() {
+	:
+}

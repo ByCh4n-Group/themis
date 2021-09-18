@@ -44,6 +44,8 @@ __makepackage() {
                             [[ -z ${maintainer} ]] && maintainer="anybody"
                             [[ -z ${description} ]] && description="you already know what to do ;)"
                             
+                            # set arch?
+
                             # Bağımlımısın kardeş?
                             if [[ ! -z ${dependencies[@]} ]] ; then
                                 found "${#dependencies[@]} themis dependencie(s)"
@@ -139,7 +141,7 @@ __makepackage() {
                                 cd ${@:i:1}
                                 tar -czf ${setdir}/${package}-${version}.themis ./* && success "The package ${package} has compiled" || { error "The package can not be created in ${setdir}" ; stat="false" ; }
                                 printf "${Bgreen}"
-                                centex "Created ${setdir}/${package}-${version}.tar.gz."
+                                centex "created ${setdir}/${package}-${version}.themis"
                                 printf "${reset}\n"
                                 # Paketi sıkıştırma
                             else
@@ -160,7 +162,7 @@ __makepackage() {
                         fi
                     else
                         status="false"
-                        error "variable package can not be null and you can't use spaces in pacakge names"
+                        error 'variable ${package} can not be null and you can not use spaces in pacakge names'
                         # paket ismi boş yada boşluklu olamaz
                         printf "${Bred}"
                         centex "Failed ${@:i:1}."
