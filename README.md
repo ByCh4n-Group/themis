@@ -23,8 +23,8 @@
 Themis is a script manager developed for modulesh, it will be more useful for all systems if you compile all scripts according to [themis packing procedure](https://bych4n-group.github.io/documents/themis/en.html) rather than package them one by one.
 
 ## Installation
-
-### Dependences:
+d
+### Dependencies:
 tar, wget, curl, python3, python3-pip, ruby, gem
 
 ### How to install develop release:
