@@ -285,7 +285,6 @@ btb-check-data() {
                 if [[ -f ./"${2}"/"${3}" ]] ; then
                     echo "[+] data '${3}' is exist in '${2}'"
                     __btbtm stop
-                    return 0
                 else
                     echo "[-] data '${3}' doesn't exist in '${2}'"
                     __btbtm stop
@@ -313,7 +312,6 @@ btb-call-data() {
                 if [[ -f ./"${2}"/"${3}" ]] ; then
                     cat ./"${2}"/"${3}"
                     __btbtm stop
-                    return 0
                 else
                     echo "[-] data '${3}' doesn't exist in '${2}'"
                     __btbtm stop
@@ -362,7 +360,7 @@ btb-call-index() {
                     echo "default (none of above)"
                 ;;
             esac
-            __btbtm stop && return 0 || return 2
+            __btbtm stop || return 2
         else
             __btbtm stop && return 1 || return 2
         fi
@@ -713,7 +711,7 @@ interactive() {
                         ;;
                         [rR][uU][nN])
                             if [[ $(file "${bank}" | grep "gzip compressed data") ]] && [[ ! -z "${basename}" ]] && [[ ! -z "${filename}" ]] ; then
-                                btb-cdi-data "${bank}" "${basename}" "${filename}"
+                                btb-check-data "${bank}" "${basename}" "${filename}"
                             else
                                 echo "Some options aren't ok please check that options and try again."
                             fi

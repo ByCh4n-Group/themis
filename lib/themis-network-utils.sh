@@ -11,3 +11,10 @@ __netcheck() {
         ;;
     esac
 }
+
+__update_themis_catalogs() {
+    source "${themis_home}/repo.sh"
+    for x in $(seq 0 ${#index[@]}) ; do
+        echo "${index[x]}"
+    done
+}

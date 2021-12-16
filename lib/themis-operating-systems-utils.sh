@@ -4,7 +4,7 @@ checkroot() {
     if [[ ${EUID} != 0 ]] ; then
             echo -e "\033[0;31mpls try with root privalages 'sudo ${0}'\033[0m" # standart error output
             checkroot="false" # variable for user to be use
-            [[ ${1} =~ ^(exit|EXIT|--exit|--EXIT|-e)$ ]] && exit 1 # or direct quit
+            [[ ${1} =~ ^(exit|EXIT|--exit|--EXIT|-e)$ ]] && { __themis-tmp-manager stop ; exit 1 ; } # or direct quit
         else
             echo -e "\033[0;32mset user have super cow powers....\033[0m" # standart output
             checkroot="true" # variable for user to be use
@@ -12,17 +12,17 @@ checkroot() {
 }
 
 definebase() {
-    if [ -e /etc/debian_version ] ; then
+    if [[ -e /etc/debian_version ]] ; then
         set_systembase="debian"
-    elif [ -e /etc/arch-release ] ; then
+    elif [[ -e /etc/arch-release ]] ; then
         set_systembase="arch"
-    elif [ -e /etc/artix-release ] ; then
+    elif [[ -e /etc/artix-release ]] ; then
         set_systembase="arch"
-    elif [ -e /etc/fedora-release ] ; then
+    elif [[ -e /etc/fedora-release ]] ; then
         set_systembase="fedora"
-    elif [ -e /etc/pisi-release ] ; then
+    elif [[ -e /etc/pisi-release ]] ; then
         set_systembase="pisi"
-    elif [ -e /etc/zypp/zypper.conf ] ; then
+    elif [[ -e /etc/zypp/zypper.conf ]] ; then
         set_systembase="opensuse"
     else
         set_systembase="unknow"
@@ -67,7 +67,7 @@ update-os-catalogs() {
 }
 
 install-os-pkg() {
-    updatecatalogs
+    update-os-catalogs
     checkroot -e
     definebase
     case ${set_systembase} in
